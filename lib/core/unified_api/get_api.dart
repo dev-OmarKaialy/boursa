@@ -31,7 +31,7 @@ class GetApi<T> with HandlingExceptionRequest {
       Map<String, String> headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        if (token != null) 'Authorization': 'Bearer $token'
+        if (token != null) 'x-auth-token': token
       };
       var request = http.Request('GET', uri);
       request.body = jsonEncode(body);

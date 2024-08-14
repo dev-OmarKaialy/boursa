@@ -33,7 +33,7 @@ class PostApi<T> with HandlingExceptionRequest {
       var headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        if (token != null) 'Authorization': 'Bearer $token'
+        if (token != null) 'x-auth-token': token
       };
 
       var request = http.Request('POST', uri);

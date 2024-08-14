@@ -1,9 +1,23 @@
 part of 'auth_bloc.dart';
 
-abstract class AuthState extends Equatable {
-  const AuthState();  
+enum CubitStatus { loading, init, success, failed }
 
-  @override
-  List<Object> get props => [];
+class AuthState {
+  final CubitStatus status;
+  final AuthModel? model;
+
+  AuthState({
+    this.status = CubitStatus.init,
+    this.model,
+  });
+
+  AuthState copyWith({
+    CubitStatus? status,
+    AuthModel? model,
+  }) {
+    return AuthState(
+      status: status ?? this.status,
+      model: model ?? this.model,
+    );
+  }
 }
-class AuthInitial extends AuthState {}

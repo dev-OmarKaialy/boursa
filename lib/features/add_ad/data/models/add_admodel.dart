@@ -4,30 +4,33 @@
 
 import 'dart:convert';
 
-AddAdModel addAdModelFromJson(String str) =>
-    AddAdModel.fromJson(json.decode(str));
+List<AddAdModel> addAdModelFromJson(String str) =>
+    List<AddAdModel>.from(json.decode(str).map((x) => AddAdModel.fromJson(x)));
 
-String addAdModelToJson(AddAdModel data) => json.encode(data.toJson());
+String addAdModelToJson(List<AddAdModel> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class AddAdModel {
-  final DateTime startTime;
-  final String details;
-  final String userId;
+  final DateTime? startTime;
+  final String? details;
+  final String? userId;
 
   AddAdModel({
-    required this.startTime,
-    required this.details,
-    required this.userId,
+    this.startTime,
+    this.details,
+    this.userId,
   });
 
   factory AddAdModel.fromJson(Map<String, dynamic> json) => AddAdModel(
-        startTime: DateTime.parse(json["Start_Time"]),
+        startTime: json["Start_Time"] == null
+            ? null
+            : DateTime.parse(json["Start_Time"]),
         details: json["details"],
         userId: json["User_id"],
       );
 
   Map<String, dynamic> toJson() => {
-        "Start_Time": startTime.toIso8601String(),
+        "Start_Time": startTime?.toIso8601String(),
         "details": details,
         "User_id": userId,
       };

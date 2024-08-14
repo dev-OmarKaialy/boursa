@@ -1,9 +1,28 @@
 part of 'add_ad_bloc.dart';
 
-abstract class AddAdState extends Equatable {
-  const AddAdState();  
+class AddAdState {
+  final CubitStatus status;
+  final CubitStatus tenderStatus;
+  final List<AddAdModel> ads;
+  final List<TenderModel> tenders;
+  const AddAdState({
+    this.status = CubitStatus.init,
+    this.tenderStatus = CubitStatus.init,
+    this.ads = const [],
+    this.tenders = const [],
+  });
 
-  @override
-  List<Object> get props => [];
+  AddAdState copyWith({
+    CubitStatus? status,
+    CubitStatus? tenderStatus,
+    List<AddAdModel>? ads,
+    List<TenderModel>? tenders,
+  }) {
+    return AddAdState(
+      status: status ?? this.status,
+      tenderStatus: tenderStatus ?? this.tenderStatus,
+      ads: ads ?? this.ads,
+      tenders: tenders ?? this.tenders,
+    );
+  }
 }
-class AddAdInitial extends AddAdState {}

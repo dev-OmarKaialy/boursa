@@ -6,3 +6,7 @@ abstract class AddAdEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class GetAds extends AddAdEvent {}
+
+class GetTenders extends AddAdEvent {}
